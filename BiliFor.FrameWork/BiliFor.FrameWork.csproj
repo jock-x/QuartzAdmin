@@ -1,0 +1,57 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Update="BiliFor.FrameWork.Entity\BiliFor.FrameWork.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>BiliFor.FrameWork.cs</LastGenOutput>
+    </None>
+    <None Update="BiliFor.FrameWork.IRepository\BiliFor.FrameWork.IRepository.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>BiliFor.FrameWork.IRepository.cs</LastGenOutput>
+    </None>
+    <None Update="BiliFor.FrameWork.IServices\BiliFor.FrameWork.IServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>BiliFor.FrameWork.IServices.cs</LastGenOutput>
+    </None>
+    <None Update="BiliFor.FrameWork.Repository\BiliFor.FrameWork.Repository.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>BiliFor.FrameWork.Repository.cs</LastGenOutput>
+    </None>
+    <None Update="BiliFor.FrameWork.Services\BiliFor.FrameWork.Services.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>BiliFor.FrameWork.Services.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="BiliFor.FrameWork.IRepository\BiliFor.FrameWork.IRepository.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>BiliFor.FrameWork.IRepository.tt</DependentUpon>
+    </Compile>
+    <Compile Update="BiliFor.FrameWork.IServices\BiliFor.FrameWork.IServices.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>BiliFor.FrameWork.IServices.tt</DependentUpon>
+    </Compile>
+    <Compile Update="BiliFor.FrameWork.Repository\BiliFor.FrameWork.Repository.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>BiliFor.FrameWork.Repository.tt</DependentUpon>
+    </Compile>
+    <Compile Update="BiliFor.FrameWork.Services\BiliFor.FrameWork.Services.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>BiliFor.FrameWork.Services.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+</Project>
