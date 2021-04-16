@@ -21,9 +21,7 @@ namespace BiliFor.Api.Controllers
     public class BiLiBiLiLoginController : Controller
     {
 
-      
         private readonly ILogger<BiLiBiLiLoginController> _logger;
-
         /// <summary>
         /// 构造函数
         /// </summary>
@@ -31,9 +29,11 @@ namespace BiliFor.Api.Controllers
         /// <param name="logger"></param>
         public BiLiBiLiLoginController( ILogger<BiLiBiLiLoginController> logger)
         {
-        
             _logger = logger;
         }
+
+
+         
 
 
     }
