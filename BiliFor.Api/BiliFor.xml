@@ -4,6 +4,27 @@
         <name>BiliFor.Api</name>
     </assembly>
     <members>
+        <member name="T:BiliFor.Api.Controllers.BiLiBiLiLoginController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BiliFor.Api.Controllers.BiLiBiLiLoginController.#ctor(Microsoft.Extensions.Logging.ILogger{BiliFor.Api.Controllers.BiLiBiLiLoginController})">
+            <summary>
+            构造函数
+            </summary>
+            <param name="logger"></param>
+        </member>
+        <member name="M:BiliFor.Api.Controllers.BiLiBiLiLoginController.Get">
+            <returns></returns>
+        </member>
+        <member name="M:BiliFor.Api.Controllers.BiLiBiLiLoginController.Post(System.String)">
+            <summary>
+            登录获取哔哩哔哩信息
+            </summary>
+            <param name="oauthKey"></param>
+            <returns></returns>
+        </member>
         <member name="T:BiliFor.Controllers.BlogController">
             <summary>
             博客管理

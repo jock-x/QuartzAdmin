@@ -202,6 +202,8 @@ namespace BiliFor
             // 服务注册
             app.UseConsulMildd(Configuration, lifetime);
             // 事件总线，订阅服务
+
+
             app.ConfigureEventBus();
 
         }

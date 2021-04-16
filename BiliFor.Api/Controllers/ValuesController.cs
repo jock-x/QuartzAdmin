@@ -272,7 +272,7 @@ namespace BiliFor.Controllers
         [AllowAnonymous]
         public MessageModel<BlogViewModels> RestsharpGet()
         {
-            return HttpHelper.GetApi<MessageModel<BlogViewModels>>("http://apk.neters.club/", "api/Blog/DetailNuxtNoPer", "id=1");
+            return Common.HttpRestSharp.HttpHelper.GetApi<MessageModel<BlogViewModels>>("http://apk.neters.club/", "api/Blog/DetailNuxtNoPer", "id=1");
         }
         /// <summary>
         /// 测试http请求 RestSharp Post
@@ -282,7 +282,7 @@ namespace BiliFor.Controllers
         [AllowAnonymous]
         public TestRestSharpPostDto RestsharpPost()
         {
-            return HttpHelper.PostApi<TestRestSharpPostDto>("http://apk.neters.club/api/Values/TestPostPara?name=老张", new { age = 18 });
+            return Common.HttpRestSharp.HttpHelper.PostApi<TestRestSharpPostDto>("http://apk.neters.club/api/Values/TestPostPara?name=老张", new { age = 18 });
         }
 
         /// <summary>
