@@ -25,6 +25,13 @@
             <param name="oauthKey"></param>
             <returns></returns>
         </member>
+        <member name="M:BiliFor.Api.Controllers.BiLiBiLiLoginController.GetUserInfo">
+            <summary>
+            登录获取哔哩哔哩信息
+            </summary>
+            <param name="oauthKey"></param>
+            <returns></returns>
+        </member>
         <member name="T:BiliFor.Controllers.BlogController">
             <summary>
             博客管理

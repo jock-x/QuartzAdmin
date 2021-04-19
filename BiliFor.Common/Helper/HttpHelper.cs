@@ -7,8 +7,7 @@ using System.IO.Compression;
 using System.Security.Cryptography.X509Certificates;
 using System.Net.Security;
 using System.Linq;
-
-namespace BiliFor.Common
+namespace BiliFor.Common.Helper
 {
     /// <summary>
     /// Http连接操作帮助类

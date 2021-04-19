@@ -126,6 +126,26 @@
             创建时间
             </summary>
         </member>
+        <member name="T:BiliFor.Model.Models.BiliSession">
+            <summary>
+            BiliSession Entity Model
+            </summary>   
+        </member>
+        <member name="P:BiliFor.Model.Models.BiliSession.uID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BiliFor.Model.Models.BiliSession.uSession">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BiliFor.Model.Models.BiliSession.uMoney">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:BiliFor.Model.Models.BlogArticle">
             <summary>
             博客文章
