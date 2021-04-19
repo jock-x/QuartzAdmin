@@ -146,7 +146,7 @@ namespace BiliFor.Api.Controllers
                 Cookie = cookie
             };
             HttpResult result = http.GetHtml(item);
-            string cookietest = result.Cookie;
+           
             return "";
         }
     }
