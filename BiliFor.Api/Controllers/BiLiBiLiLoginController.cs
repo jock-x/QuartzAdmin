@@ -28,14 +28,16 @@ namespace BiliFor.Api.Controllers
     {
         readonly IBiliAccountService _biliaccountservice;
         private readonly ILogger<BiLiBiLiLoginController> _logger;
+        readonly IMangaDomainService _managadomainservice;
         /// <summary>
         /// 构造函数
         /// </summary>
 
         /// <param name="logger"></param>
-        public BiLiBiLiLoginController(IBiliAccountService biliaccountservice, ILogger<BiLiBiLiLoginController> logger)
+        public BiLiBiLiLoginController(IBiliAccountService biliaccountservice, IMangaDomainService managadomainservice, ILogger<BiLiBiLiLoginController> logger)
         {
             _biliaccountservice = biliaccountservice;
+            _managadomainservice = managadomainservice;
             _logger = logger;
         }
 
@@ -134,6 +136,9 @@ namespace BiliFor.Api.Controllers
             BiliUserInfo apiResponse = _biliaccountservice.LoginByCookie(cookie);
 
             DailyTaskInfo daily = _biliaccountservice.GetDailyTaskStatus(cookie);
+
+            _managadomainservice.MangaSign(cookie);
+
 
             return "";
         }

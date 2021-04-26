@@ -11,10 +11,10 @@ namespace BiliFor.Services
     {
 
         private readonly ILogger<DonateCoinDomainService> _logger;
-        IBaseRepository<string> _dal;
+        IBaseRepository<BiliUserInfo> _dal;
       
 
-        public DonateCoinDomainService(IBaseRepository<string> dal, ILogger<DonateCoinDomainService> logger)
+        public DonateCoinDomainService(IBaseRepository<BiliUserInfo> dal, ILogger<DonateCoinDomainService> logger)
         {
             this._logger = logger;
             this._dal = dal;
