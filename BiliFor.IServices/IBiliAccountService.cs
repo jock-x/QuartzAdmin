@@ -16,7 +16,7 @@ namespace BiliFor.IServices
         /// 获取每日任务完成情况
         /// </summary>
         /// <returns></returns>
-        //DailyTaskInfo GetDailyTaskStatus();
+        DailyTaskInfo GetDailyTaskStatus(string cookie);
 
     }
 }

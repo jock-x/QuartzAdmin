@@ -14,33 +14,27 @@ namespace BiliFor.Services
     {
         private readonly ILogger<BiliAccountService> _logger;
         IBaseRepository<BiliUserInfo> _dal;
-    
+        private readonly IHttpHelpService _httphelper;
 
 
-        public BiliAccountService( IBaseRepository<BiliUserInfo> dal, ILogger<BiliAccountService> logger)
+        public BiliAccountService(IBaseRepository<BiliUserInfo> dal, ILogger<BiliAccountService> logger,IHttpHelpService httphelper)
         {
             this._logger = logger;
-           
             this._dal = dal;
+            this._httphelper = httphelper;
             base.BaseDal = dal;
         }
 
-
+        #region
         public BiliUserInfo LoginByCookie(string cookie)
         {
+            HttpHelper _http = new HttpHelper();
             _logger.LogInformation("");
             _logger.LogInformation("开始登录");
-            HttpHelper _http = new HttpHelper();
+
             string BiLiLoginForSure = "http://api.bilibili.com/x/web-interface/nav";
-            HttpItem item = new HttpItem()
-            {
-                URL = BiLiLoginForSure,//URL 必需项
-                Method = "get",//URL     可选项 默认为Get
-                Timeout = 100000,//连接超时时间     可选项默认为100000
-                Accept = "application/x-www-form-urlencoded",//可选项有默认值
-                Cookie = cookie
-            };
-            HttpResult result = _http.GetHtml(item);
+            HttpResult result =  _httphelper.ToGet(BiLiLoginForSure, cookie);
+
             BiliApiResponse<BiliUserInfo> apiResponse = JsonConvert.DeserializeObject<BiliApiResponse<BiliUserInfo>>(result.Html);
 
             if (apiResponse.Code != 0 || !apiResponse.Data.IsLogin)
@@ -68,5 +62,36 @@ namespace BiliFor.Services
             return useInfo;
         }
 
+        #endregion
+
+
+
+        /// <summary>
+        /// 获取每日任务完成情况
+        /// </summary>
+        /// <returns></returns>
+        public DailyTaskInfo GetDailyTaskStatus(string cookie)
+        {
+            DailyTaskInfo result = new();
+
+            string url = "http://api.bilibili.com/x/member/web/exp/reward";
+            HttpResult httpresult = _httphelper.ToGet(url, cookie);
+
+            BiliApiResponse<DailyTaskInfo> apiResponse = JsonConvert.DeserializeObject<BiliApiResponse<DailyTaskInfo>>(httpresult.Html);
+
+           
+            if (apiResponse.Code == 0)
+            {
+                _logger.LogDebug("请求本日任务完成状态成功");
+                result = apiResponse.Data;
+            }
+            else
+            {
+                _logger.LogWarning("获取今日任务完成状态失败：{result}", JsonConvert.SerializeObject(apiResponse));
+                result = apiResponse.Data;
+            }
+
+            return result;
+        }
     }
 }
