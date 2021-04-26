@@ -2,14 +2,8 @@
 using BiliFor.Common.Helper;
 using BiliFor.IServices;
 using BiliFor.Model.Bili;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using RestSharp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
 
 
@@ -136,7 +130,6 @@ namespace BiliFor.Api.Controllers
            
             //获取登录用户信息
             BiliUserInfo apiResponse = _biliaccountservice.LoginByCookie(cookie);
-
 
             //获取每日任务
             DailyTaskInfo daily = _biliaccountservice.GetDailyTaskStatus(cookie);
