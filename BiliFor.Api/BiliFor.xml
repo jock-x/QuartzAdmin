@@ -9,7 +9,7 @@
             
             </summary>
         </member>
-        <member name="M:BiliFor.Api.Controllers.BiLiBiLiLoginController.#ctor(Microsoft.Extensions.Logging.ILogger{BiliFor.Api.Controllers.BiLiBiLiLoginController})">
+        <member name="M:BiliFor.Api.Controllers.BiLiBiLiLoginController.#ctor(BiliFor.IServices.IBiliAccountService,Microsoft.Extensions.Logging.ILogger{BiliFor.Api.Controllers.BiLiBiLiLoginController})">
             <summary>
             构造函数
             </summary>

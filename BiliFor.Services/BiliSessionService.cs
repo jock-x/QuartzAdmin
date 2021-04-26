@@ -1,6 +1,5 @@
-using System;
+
 using BiliFor.Model.Models;
-using BiliFor.IRepository;
 using BiliFor.IServices;
 using BiliFor.IRepository.Base;
 using BiliFor.Services.BASE;
@@ -20,6 +19,7 @@ namespace BiliFor.Services
             this._dal = dal;
             base.BaseDal = dal;
         }
+
 
     }
 }

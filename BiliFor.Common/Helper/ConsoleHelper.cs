@@ -12,6 +12,16 @@ namespace BiliFor.Common.Helper
             Console.ForegroundColor = currentForeColor;
         }
 
+
+        static void WriteColor(string str, ConsoleColor color)
+        {
+            ConsoleColor currentForeColor = Console.ForegroundColor;
+            Console.ForegroundColor = color;
+            Console.Write(str);
+            Console.ForegroundColor = currentForeColor;
+        }
+
+
         /// <summary>
         /// 打印错误信息
         /// </summary>
@@ -22,6 +32,13 @@ namespace BiliFor.Common.Helper
             WriteColorLine(str, color);
         }
 
+
+        public static void WriteError(this string str, ConsoleColor color = ConsoleColor.Red)
+        {
+            WriteColor(str, color);
+        }
+
+
         /// <summary>
         /// 打印警告信息
         /// </summary>
@@ -31,6 +48,12 @@ namespace BiliFor.Common.Helper
         {
             WriteColorLine(str, color);
         }
+
+        public static void WriteWarning(this string str, ConsoleColor color = ConsoleColor.Yellow)
+        {
+            WriteColor(str, color);
+        }
+
         /// <summary>
         /// 打印正常信息
         /// </summary>
@@ -40,6 +63,12 @@ namespace BiliFor.Common.Helper
         {
             WriteColorLine(str, color);
         }
+
+        public static void WriteInfo(this string str, ConsoleColor color = ConsoleColor.White)
+        {
+            WriteColor(str, color);
+        }
+
         /// <summary>
         /// 打印成功的信息
         /// </summary>
@@ -49,6 +78,13 @@ namespace BiliFor.Common.Helper
         {
             WriteColorLine(str, color);
         }
+
+
+        public static void WriteSuccess(this string str, ConsoleColor color = ConsoleColor.Green)
+        {
+            WriteColor(str, color);
+        }
+
 
     }
 }

@@ -10,6 +10,7 @@ namespace BiliFor
     {
         public static void Main(string[] args)
         {
+         
             //初始化默认主机Builder
             Host.CreateDefaultBuilder(args)
              .UseServiceProviderFactory(new AutofacServiceProviderFactory())
