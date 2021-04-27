@@ -9,10 +9,14 @@
             
             </summary>
         </member>
-        <member name="M:BiliFor.Api.Controllers.BiLiBiLiLoginController.#ctor(BiliFor.IServices.IBiliAccountService,BiliFor.IServices.IMangaDomainService,Microsoft.Extensions.Logging.ILogger{BiliFor.Api.Controllers.BiLiBiLiLoginController})">
+        <member name="M:BiliFor.Api.Controllers.BiLiBiLiLoginController.#ctor(BiliFor.IServices.IVipPrivilegeDomainService,BiliFor.IServices.IBiliCookieServices,BiliFor.IServices.IBiliAccountService,BiliFor.IServices.IMangaDomainService,Microsoft.Extensions.Logging.ILogger{BiliFor.Api.Controllers.BiLiBiLiLoginController})">
             <summary>
-            构造函数
+            
             </summary>
+            <param name="vipService"></param>
+            <param name="bilicookieservices"></param>
+            <param name="biliaccountservice"></param>
+            <param name="managadomainservice"></param>
             <param name="logger"></param>
         </member>
         <member name="M:BiliFor.Api.Controllers.BiLiBiLiLoginController.Get">

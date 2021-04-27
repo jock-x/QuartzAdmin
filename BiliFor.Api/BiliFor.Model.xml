@@ -4,6 +4,26 @@
         <name>BiliFor.Model</name>
     </assembly>
     <members>
+        <member name="P:BiliFor.Model.Bili.BiliCookie.UserId">
+            <summary>
+            DedeUserID
+            </summary>
+        </member>
+        <member name="P:BiliFor.Model.Bili.BiliCookie.SessData">
+            <summary>
+            SESSDATA
+            </summary>
+        </member>
+        <member name="P:BiliFor.Model.Bili.BiliCookie.BiliJct">
+            <summary>
+            bili_jct
+            </summary>
+        </member>
+        <member name="P:BiliFor.Model.Bili.BiliCookie.OtherCookies">
+            <summary>
+            其他Cookies
+            </summary>
+        </member>
         <member name="T:BiliFor.Model.Bili.BiliUserInfo">
             <summary>
             账户信息

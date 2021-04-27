@@ -47,11 +47,11 @@ namespace BiliFor.Services
 
             if (response.Code == 0)
             {
-                _logger.LogInformation("完成漫画签到");
+                _logger.LogDebug("完成漫画签到");
             }
             else
             {
-                _logger.LogInformation("漫画签到异常");
+                _logger.LogError("漫画签到异常");
             }
         }
 
@@ -60,16 +60,16 @@ namespace BiliFor.Services
         /// </summary>
         /// <param name="reason_id">权益号，由https://api.bilibili.com/x/vip/privilege/my得到权益号数组，取值范围为数组中的整数
         /// 这里为方便直接取1，为领取漫读劵，暂时不取其他的值</param>
-        //public void ReceiveMangaVipReward(int reason_id, UserInfo userInfo)
+        //public void ReceiveMangaVipReward(string url,int reason_id,BiliUserInfo userInfo)
         //{
         //    int day = DateTime.Today.Day;
 
-        //    if (day != _dailyTaskOptions.DayOfReceiveVipPrivilege)
-        //    {
-        //        //一个月执行一次就行
-        //        _logger.LogInformation("目标领取日期为{target}号，今天是{day}号，跳过领取任务", _dailyTaskOptions.DayOfReceiveVipPrivilege, day);
-        //        return;
-        //    }
+        //    //if (day != _dailyTaskOptions.DayOfReceiveVipPrivilege)
+        //    //{
+        //    //    //一个月执行一次就行
+        //    //    _logger.LogInformation("目标领取日期为{target}号，今天是{day}号，跳过领取任务", _dailyTaskOptions.DayOfReceiveVipPrivilege, day);
+        //    //    return;
+        //    //}
 
         //    if (userInfo.GetVipType() == 0)
         //    {
