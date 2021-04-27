@@ -1,6 +1,10 @@
 ﻿Dev Build:: 
 
-  [![Front](https://img.shields.io/badge/Front-VUE-d.svg)](#) [![sdk](https://img.shields.io/badge/sdk-5.0.1-d.svg)](#)  [![Build status](https://github.com/anjoy8/bilifor/workflows/.NET%20Core/badge.svg)](https://github.com/anjoy8/BiliFor/actions) [![codecov](https://codecov.io/gh/anjoy8/BiliFor/branch/master/graph/badge.svg)](https://codecov.io/gh/anjoy8/BiliFor)  [![License MIT](https://img.shields.io/badge/license-Apache-blue.svg?style=flat-square)](https://github.com/anjoy8/BiliFor/blob/master/LICENSE) [![Language](https://img.shields.io/badge/language-csharp-d.svg)](#) 
+ [![sdk](https://img.shields.io/badge/sdk-5.0.1-d.svg)](#)  
+ [![Build status](https://github.com/anjoy8/bilifor/workflows/.NET%20Core/badge.svg)](https://github.com/anjoy8/BiliFor/actions)
+  [![codecov](https://codecov.io/gh/anjoy8/BiliFor/branch/master/graph/badge.svg)](https://codecov.io/gh/anjoy8/BiliFor)  
+  [![License MIT](https://img.shields.io/badge/license-Apache-blue.svg?style=flat-square)](https://github.com/anjoy8/BiliFor/blob/master/LICENSE) 
+  [![Language](https://img.shields.io/badge/language-csharp-d.svg)](#) 
 [![star this repo](http://githubbadges.com/star.svg?user=anjoy8&repo=bilifor&style=flat)](https://github.com/boennemann/badges) 
 [![fork this repo](http://githubbadges.com/fork.svg?user=anjoy8&repo=bilifor&style=flat)](https://github.com/boennemann/badges/fork) 
 [![博客园](https://img.shields.io/badge/博客园-老张的哲学-brightgreen.svg)](https://www.cnblogs.com/laozhang-is-phi/)
