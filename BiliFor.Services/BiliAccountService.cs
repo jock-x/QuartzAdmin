@@ -43,11 +43,9 @@ namespace BiliFor.Services
                 return null;
             }
             BiliUserInfo useInfo = apiResponse.Data;
-
             _logger.LogInformation("登录成功，经验+{0} √", 5);
             _logger.LogInformation("用户名: {0}", useInfo.GetFuzzyUname());
             _logger.LogInformation("硬币余额: {0}", useInfo.Money ?? 0);
-
             if (useInfo.Level_info.Current_level < 6)
             {
                 _logger.LogInformation("如每日做满65点经验，距离升级到 Lv{0} 还有: {1}天",

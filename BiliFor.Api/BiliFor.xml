@@ -9,7 +9,7 @@
             
             </summary>
         </member>
-        <member name="M:BiliFor.Api.Controllers.BiLiBiLiLoginController.#ctor(BiliFor.IServices.IVipPrivilegeDomainService,BiliFor.IServices.IBiliCookieServices,BiliFor.IServices.IBiliAccountService,BiliFor.IServices.IMangaDomainService,Microsoft.Extensions.Logging.ILogger{BiliFor.Api.Controllers.BiLiBiLiLoginController})">
+        <member name="M:BiliFor.Api.Controllers.BiLiBiLiLoginController.#ctor(BiliFor.IServices.ICSDNSignServices,BiliFor.IServices.IVipPrivilegeDomainService,BiliFor.IServices.IBiliCookieServices,BiliFor.IServices.IBiliAccountService,BiliFor.IServices.IMangaDomainService,Microsoft.Extensions.Logging.ILogger{BiliFor.Api.Controllers.BiLiBiLiLoginController})">
             <summary>
             
             </summary>
