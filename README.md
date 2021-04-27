@@ -21,11 +21,17 @@
 &nbsp;
 
 <h3 align="center">声明</h3>  
-<h3 align="center">不断更新中....</h3>  
 
-本项目基于: [老张的哲学](https://www.cnblogs.com/laozhang-is-phi/) 框架搭建而成API部分参考了[bilibili-API-collect](https://github.com/SocialSisterYi/bilibili-API-collect)
+1. 本项目基于: [老张的哲学](https://www.cnblogs.com/laozhang-is-phi/) 框架搭建而成API部分参考了[bilibili-API-collect](https://github.com/SocialSisterYi/bilibili-API-collect)
+2. [老张的哲学框架地址](https://github.com/anjoy8/Blog.Core)
+3. [框架详解](https://www.cnblogs.com/laozhang-is-phi/p/9495618.html#autoid-1-0-0)
 
-框架部分就不细讲了如果不懂得华请点击上方连接查看原作者介绍
+
+4. 本项目遵守CC-BY-4.0协议，如需转载请标明作者ID
+5. **请勿滥用，本项目仅用于学习和测试！请勿滥用，本项目仅用于学习和测试！请勿滥用，本项目仅用于学习和测试！**
+6. 由于使用本项目提供的接口、文档等造成的不良影响和后果与本人无关
+7. 由于本项目的特殊性，可能随时停止开发或删档
+8. 本项目为开源项目，不接受任何的催单和索取行为
 
 &nbsp;
 
