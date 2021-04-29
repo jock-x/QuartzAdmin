@@ -1,38 +1,32 @@
-#FROM swr.cn-south-1.myhuaweicloud.com/mcr/aspnet:5.0-alpine
-#FROM mcr.microsoft.com/dotnet/core/aspnet:5.0-buster-slim
-FROM mcr.microsoft.com/dotnet/aspnet:5.0-buster-slim
-RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-RUN echo 'Asia/Shanghai' >/etc/timezone
+#See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
-#RUN apk add --no-cache ca-certificates python3 bash openssh git openssl-dev uwsgi uwsgi-python3
-#RUN apk add --no-cache --virtual .build-deps python3-dev gcc musl-dev libffi-dev make \
-        #&& pip3 install --no-cache-dir --trusted-host mirrors.aliyun.com -i http://mirrors.aliyun.com/pypi/simple/ \
-                #pymysql==0.8.1 \
-                #Flask==1.0.2 \
-                #Flask-RESTful==0.3.6 \
-                #Flask-Script==2.0.6 \
-                #Flask-SQLAlchemy==2.3.2 \
-                #Flask-WTF==0.14.2 \
-                #SQLAlchemy==1.2.7 \
-                #simplejson==5.06.0 \
-                #six==1.11.0 \
-                #celery==4.2.1 \
-                #xlrd==1.1.0 \
-                #xlwt==1.3.0 \
-                #msgpack==0.5.0 \
-                       #&& apk del .build-deps
-#
-#RUN git clone https://github.com/Supervisor/supervisor.git \
-        #&& cd supervisor \
-        #&& python3 setup.py install \
-        #&& cd .. \
-        #&& rm -rf supervisor \
-        #&& cd /etc/ \
-        #&& echo_supervisord_conf > supervisord.conf \
-        #&& echo '[include]' >> supervisord.conf \
-        #&& echo 'files = /code/supervisor/*.ini' >> supervisord.conf \
-        #&& supervisord -c /etc/supervisord.conf
+FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base
 WORKDIR /app
-COPY . . 
-EXPOSE 8081 
-ENTRYPOINT ["dotnet", "BiliFor.Api.dll","-b","0.0.0.0"]
+EXPOSE 80
+
+FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
+WORKDIR /src
+COPY ["BiliFor.Api/BiliFor.Api.csproj", "BiliFor.Api/"]
+COPY ["BiliFor.Extensions/BiliFor.Extensions.csproj", "BiliFor.Extensions/"]
+COPY ["BiliFor.EventBus/BiliFor.EventBus.csproj", "BiliFor.EventBus/"]
+COPY ["BiliFor.Common/BiliFor.Common.csproj", "BiliFor.Common/"]
+COPY ["BiliFor.Tasks/BiliFor.Tasks.csproj", "BiliFor.Tasks/"]
+COPY ["BiliFor.IServices/BiliFor.IServices.csproj", "BiliFor.IServices/"]
+COPY ["BiliFor.Model/BiliFor.Model.csproj", "BiliFor.Model/"]
+COPY ["BiliFor.Services/BiliFor.Services.csproj", "BiliFor.Services/"]
+COPY ["BiliFor.Repository/BiliFor.Repository.csproj", "BiliFor.Repository/"]
+RUN dotnet restore "BiliFor.Api/BiliFor.Api.csproj"
+COPY . .
+WORKDIR "/src/BiliFor.Api"
+RUN dotnet build "BiliFor.Api.csproj" -c Release -o /app/build
+
+
+
+FROM build AS publish
+RUN dotnet publish "BiliFor.Api.csproj" -c Release -o /app/publish
+COPY BiliFor.Api/BiliFor.xml  /app/publish
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "BiliFor.Api.dll"]

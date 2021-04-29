@@ -4,6 +4,7 @@ using BiliFor.Model.Bili;
 using BiliFor.Services.BASE;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace BiliFor.Services
 {
@@ -26,7 +27,7 @@ namespace BiliFor.Services
         /// 每月领取大会员福利（B币券、大会员权益）
         /// </summary>
         /// <param name="useInfo"></param>
-        public bool ReceiveVipPrivilege(BiliUserInfo userInfo,BiliCookie bilicookie)
+        public BiMessage ReceiveVipPrivilege(BiliUserInfo userInfo,BiliCookie bilicookie)
         {
             //if (_dailyTaskOptions.DayOfReceiveVipPrivilege == 0)
             //{
@@ -48,18 +49,40 @@ namespace BiliFor.Services
             //大会员类型
             int vipType = userInfo.GetVipType();
 
+            BiMessage result = new BiMessage();
+
+
             if (vipType == 2)
             {
-                var suc1 = ReceiveVipPrivilege(1, bilicookie);
-                var suc2 = ReceiveVipPrivilege(2, bilicookie);
+                List<string> message = new List<string>();
+                string message1 = "";
+                string message2 = "";
+                var suc1 = ReceiveVipPrivilege(1, bilicookie,out message1);
+                var suc2 = ReceiveVipPrivilege(2, bilicookie,out message2);
+                message.Add(message1);
+                message.Add(message2);
 
-                //if (suc1 | suc2) return true;
-                return false;
+                if (suc1 | suc2)
+                {
+                    result.Code = 1;
+                    result.Message = message;
+                    return result;
+                }
+                else
+                {
+                    result.Code = 0;
+                    result.Message = message;
+                    return result;
+                }
+              
+               
             }
             else
             {
+                result.Code = 0;
+                result.Message.Add("普通会员和月度大会员每月不赠送B币券，所以不需要领取权益喽");
                 _logger.LogInformation("普通会员和月度大会员每月不赠送B币券，所以不需要领取权益喽");
-                return false;
+                return result;
             }
 
 
@@ -72,8 +95,9 @@ namespace BiliFor.Services
         /// 领取大会员每月赠送福利
         /// </summary>
         /// <param name="type">1.大会员B币券；2.大会员福利</param>
-        private bool ReceiveVipPrivilege(int type, BiliCookie bilicookie)
+        private bool ReceiveVipPrivilege(int type, BiliCookie bilicookie, out string message)
         {
+
             string csrf = bilicookie.BiliJct;
             string url = string.Format("http://api.bilibili.com/x/vip/privilege/receive?type={0}&csrf={1}", type, csrf);
             var response = _httphelper.ToPost(url, bilicookie.CookieStr,"");
@@ -82,11 +106,13 @@ namespace BiliFor.Services
             if (apiResponse.Code == 0)
             {
                 _logger.LogDebug($"{name}成功");
+                message= $"{name}成功";
                 return true;
             }
             else
             {
                 _logger.LogError($"{name}失败，原因: {apiResponse.Message}");
+                message= $"{name}失败，原因: {apiResponse.Message}";
                 return false;
             }
         }

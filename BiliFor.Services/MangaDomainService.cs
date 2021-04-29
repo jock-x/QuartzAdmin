@@ -28,30 +28,39 @@ namespace BiliFor.Services
             _httphelper = httphelper;
         }
 
-        public void MangaSign(string cookie)
+        public BiMessage MangaSign(string cookie)
         {
+
+            BiMessage mangasing = new BiMessage();
+
             string url = "https://manga.bilibili.com/twirp/activity.v1.Activity/ClockIn?platform=android";
             BiliApiResponse response;
             try
             {
                var result= _httphelper.ToPost(url, cookie, "");
-               response = JsonConvert.DeserializeObject<BiliApiResponse>(result.Html); 
+               response = JsonConvert.DeserializeObject<BiliApiResponse>(result.Html);
             }
             catch (Exception)
             {
                 //ignore
                 //重复签到会报400异常,这里忽略掉
-                _logger.LogInformation("今日已签到过，无法重复签到");
-                return;
+                mangasing.Code = 0;
+                mangasing.Message.Add("今日已签到过，无法重复签到");
+                return mangasing;
             }
 
             if (response.Code == 0)
             {
-                _logger.LogDebug("完成漫画签到");
+                mangasing.Code = 1;
+                mangasing.Message.Add("完成漫画签到");
+                return mangasing;
+
             }
             else
             {
-                _logger.LogError("漫画签到异常");
+                mangasing.Code = 0;
+                mangasing.Message.Add("漫画签到异常");
+                return mangasing;
             }
         }
 

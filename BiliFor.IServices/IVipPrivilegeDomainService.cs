@@ -12,6 +12,6 @@ namespace BiliFor.IServices
         /// 获取大会员权益
         /// </summary>
         /// <param name="useInfo"></param>
-        bool ReceiveVipPrivilege(BiliUserInfo userInfo, BiliCookie bilicookie);
+        BiMessage ReceiveVipPrivilege(BiliUserInfo userInfo, BiliCookie bilicookie);
     }
 }

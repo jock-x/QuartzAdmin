@@ -8,7 +8,7 @@ namespace BiliFor.IServices
         /// <summary>
         /// 签到
         /// </summary>
-        void MangaSign(string cookie);
+        BiMessage MangaSign(string cookie);
 
         /// <summary>
         /// 获取大会员权益

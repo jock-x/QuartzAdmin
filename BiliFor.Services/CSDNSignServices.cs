@@ -24,7 +24,7 @@ namespace BiliFor.Services
         }
 
 
-        public void CSDNSign(string cookie)
+        public string CSDNSign(string cookie)
         {
             string url = "https://me.csdn.net/api/LuckyDraw_v2/signIn";
             HttpHelper http = new HttpHelper();
@@ -40,6 +40,7 @@ namespace BiliFor.Services
             item.Header.Add("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36");
             item.Header.Add("Cookie", cookie);
             HttpResult result = http.GetHtml(item);
+            return result.Html;
         }
 
     }

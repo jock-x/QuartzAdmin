@@ -26,12 +26,10 @@ namespace BiliFor.Services
         }
 
         #region
-        public BiliUserInfo LoginByCookie(string cookie)
+        public HttpResponse<BiliUserInfo> LoginByCookie(string cookie)
         {
+            HttpResponse<BiliUserInfo> responsemodel = new HttpResponse<BiliUserInfo>();
             HttpHelper _http = new HttpHelper();
-            _logger.LogInformation("");
-            _logger.LogInformation("开始登录");
-
             string BiLiLoginForSure = "http://api.bilibili.com/x/web-interface/nav";
             HttpResult result =  _httphelper.ToGet(BiLiLoginForSure, cookie);
 
@@ -39,25 +37,33 @@ namespace BiliFor.Services
 
             if (apiResponse.Code != 0 || !apiResponse.Data.IsLogin)
             {
+                responsemodel.Code = 0;
+                responsemodel.Message.Add("登录异常，请检查Cookie是否错误或过期");
                 _logger.LogWarning("登录异常，请检查Cookie是否错误或过期");
-                return null;
+                return responsemodel;
             }
+
+            responsemodel.Code = 1;
+
             BiliUserInfo useInfo = apiResponse.Data;
-            _logger.LogInformation("登录成功，经验+{0} √", 5);
-            _logger.LogInformation("用户名: {0}", useInfo.GetFuzzyUname());
-            _logger.LogInformation("硬币余额: {0}", useInfo.Money ?? 0);
+            responsemodel.Message.Add("登录成功");
+            responsemodel.Message.Add(string.Format("用户名: {0}", useInfo.GetFuzzyUname()));
+            responsemodel.Message.Add(string.Format("硬币余额: {0}", useInfo.Money ?? 0));
+            responsemodel.Data = useInfo;
+
             if (useInfo.Level_info.Current_level < 6)
             {
-                _logger.LogInformation("如每日做满65点经验，距离升级到 Lv{0} 还有: {1}天",
+                responsemodel.Message.Add(string.Format("如每日做满65点经验，距离升级到 Lv{0} 还有: {1}天",
                     useInfo.Level_info.Current_level + 1,
-                    (useInfo.Level_info.GetNext_expLong() - useInfo.Level_info.Current_exp) / 65);
+                    (useInfo.Level_info.GetNext_expLong() - useInfo.Level_info.Current_exp) / 65));
+               
             }
             else
             {
-                _logger.LogInformation("您已是 Lv6 的大佬了，当前经验：{0}，无敌是多么寂寞~", useInfo.Level_info.Current_exp);
+                responsemodel.Message.Add(string.Format("您已是 Lv6 的大佬了，当前经验：{0}，无敌是多么寂寞~", useInfo.Level_info.Current_exp));
+                
             }
-
-            return useInfo;
+            return responsemodel;
         }
 
         #endregion
@@ -68,8 +74,11 @@ namespace BiliFor.Services
         /// 获取每日任务完成情况
         /// </summary>
         /// <returns></returns>
-        public DailyTaskInfo GetDailyTaskStatus(string cookie)
+        public HttpResponse<DailyTaskInfo> GetDailyTaskStatus(string cookie)
         {
+            HttpResponse<DailyTaskInfo> responsemodel = new HttpResponse<DailyTaskInfo>();
+
+
             DailyTaskInfo result = new();
 
             string url = "http://api.bilibili.com/x/member/web/exp/reward";
@@ -80,16 +89,20 @@ namespace BiliFor.Services
            
             if (apiResponse.Code == 0)
             {
-                _logger.LogDebug("请求本日任务完成状态成功");
+                responsemodel.Code = 1;
+                responsemodel.Message.Add("请求本日任务完成状态成功");
                 result = apiResponse.Data;
+                responsemodel.Data = result;
             }
             else
             {
-                _logger.LogWarning("获取今日任务完成状态失败：{result}", JsonConvert.SerializeObject(apiResponse));
+
+                responsemodel.Code = 0;
+                responsemodel.Message.Add(string.Format("获取今日任务完成状态失败：{result}", JsonConvert.SerializeObject(apiResponse)));
+              
                 result = apiResponse.Data;
             }
-
-            return result;
+            return responsemodel;
         }
     }
 }

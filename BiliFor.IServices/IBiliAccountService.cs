@@ -1,6 +1,6 @@
 ﻿using BiliFor.IServices.BASE;
 using BiliFor.Model.Bili;
-using System.Threading.Tasks;
+
 
 namespace BiliFor.IServices
 {
@@ -10,13 +10,13 @@ namespace BiliFor.IServices
         /// 使用Cookie登录
         /// </summary>
         /// <returns></returns>
-        BiliUserInfo LoginByCookie(string cookie);
+        HttpResponse<BiliUserInfo> LoginByCookie(string cookie);
 
         /// <summary>
         /// 获取每日任务完成情况
         /// </summary>
         /// <returns></returns>
-        DailyTaskInfo GetDailyTaskStatus(string cookie);
+        HttpResponse<DailyTaskInfo> GetDailyTaskStatus(string cookie);
 
     }
 }

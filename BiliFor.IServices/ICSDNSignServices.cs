@@ -5,6 +5,6 @@ namespace BiliFor.IServices
 {
     public interface ICSDNSignServices : IBaseServices<BiliUserInfo>
     {
-         void CSDNSign(string cookie);
+         string CSDNSign(string cookie);
     }
 }
