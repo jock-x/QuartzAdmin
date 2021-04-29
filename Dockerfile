@@ -2,11 +2,12 @@
 
 FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base
 WORKDIR /app
-EXPOSE 80
+EXPOSE 8081
+
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
-COPY ["BiliFor.Api/Dockerfile", "BiliFor.Api/"]
 COPY ["BiliFor.Api/BiliFor.Api.csproj", "BiliFor.Api/"]
 COPY ["BiliFor.Extensions/BiliFor.Extensions.csproj", "BiliFor.Extensions/"]
 COPY ["BiliFor.EventBus/BiliFor.EventBus.csproj", "BiliFor.EventBus/"]
