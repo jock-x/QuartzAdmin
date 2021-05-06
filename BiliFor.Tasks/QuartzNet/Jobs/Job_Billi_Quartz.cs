@@ -91,7 +91,7 @@ namespace BiliFor.Tasks
                 }
             }
 
-            //await Console.Out.WriteLineAsync("B站签到成功" + list.Count.ToString());
+            await Console.Out.WriteLineAsync("B站签到结果" + describe.outstring());
         }
     }
 }
